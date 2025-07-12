@@ -1,9 +1,15 @@
 import express, { Request, Response } from 'express'
-import cors from 'cors'
 import { userRouter } from './app/modules/user/user.router'
+import cors from 'cors'
 export const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+
+  ],
+  credentials: true
+}))
 app.use(express.json())
 
 // routes

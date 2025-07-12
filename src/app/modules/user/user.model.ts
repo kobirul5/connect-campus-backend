@@ -27,6 +27,7 @@ const userSchema = new Schema<IUser>(
             type: String,
             default: "",
         },
+        university: String,
         address: {
             type: String,
             default: "",

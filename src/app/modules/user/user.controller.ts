@@ -77,4 +77,40 @@ const getUserByEmail = async (req: Request, res: Response) => {
     }
 };
 
-export { getUserByEmail, createUser }
+
+const updateUser = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.params;
+    const updateData = req.body;
+
+    if (!email) {
+       res.status(400).json({ message: "Email is required" });
+      return
+    }
+
+    const user = await User.findOneAndUpdate(
+      { email: email },
+      { $set: updateData },
+      { new: true, runValidators: true, fields: "-password" }
+    );
+
+    if (!user) {
+       res.status(404).json({ message: "User not found" });
+      return
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+export { getUserByEmail, createUser, updateUser }
