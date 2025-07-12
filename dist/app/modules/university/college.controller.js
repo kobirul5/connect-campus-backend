@@ -27,7 +27,7 @@ exports.createCollege = createCollege;
 const getAllColleges = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const colleges = yield college_model_1.College.find();
-        res.status(200).json(colleges);
+        res.status(200).json({ success: true, data: colleges });
     }
     catch (error) {
         res.status(500).json({ message: "Failed to fetch colleges", error });
@@ -43,7 +43,7 @@ const getCollegeById = (req, res) => __awaiter(void 0, void 0, void 0, function*
             res.status(404).json({ message: "College not found" });
             return;
         }
-        res.status(200).json(college);
+        res.status(200).json({ success: true, data: college });
     }
     catch (error) {
         res.status(500).json({ message: "Failed to fetch college", error });
