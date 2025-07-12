@@ -6,6 +6,7 @@ export const app = express()
 app.use(cors({
   origin: [
     'http://localhost:3000',
+    'https://connect-campus-five.vercel.app'
 
   ],
   credentials: true
