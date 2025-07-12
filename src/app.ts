@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import { userRouter } from './app/modules/user/user.router'
 import cors from 'cors'
+import { collageRouter } from './app/modules/university/college.router'
 export const app = express()
 
 app.use(cors({
@@ -15,6 +16,7 @@ app.use(express.json())
 
 // routes
 app.use('/api/user', userRouter)
+app.use('/api/collage', collageRouter)
 
 
 app.get('/', (req:Request, res:Response)=>{
