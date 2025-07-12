@@ -17,7 +17,7 @@ export const createCollege = async (req: Request, res: Response) => {
 export const getAllColleges = async (req: Request, res: Response) => {
   try {
     const colleges = await College.find();
-    res.status(200).json(colleges);
+    res.status(200).json({success: true, data:colleges});
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch colleges", error });
   }
@@ -32,7 +32,7 @@ export const getCollegeById = async (req: Request, res: Response) => {
        res.status(404).json({ message: "College not found" });
        return
     }
-    res.status(200).json(college);
+    res.status(200).json({success: true, data:college});
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch college", error });
   }
