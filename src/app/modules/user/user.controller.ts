@@ -56,7 +56,7 @@ const getUserByEmail = async (req: Request, res: Response) => {
             return
         }
 
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email: email }).select('-password');
 
         if (!user) {
             res.status(404).json({ message: "User not found" });
